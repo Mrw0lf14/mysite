@@ -1,0 +1,98 @@
+*{
+	padding: 0px;
+	margin: 0px auto;
+	background-color: #fafafa;
+	width: 100%;
+}
+
+
+
+header{
+	min-height: 40px;
+	width: 100%;
+	background-color: #111;
+	position: fixed;
+	opacity: .8;
+	color: white;
+	padding-left: 100px;
+	display: flex;
+}
+header img{
+	width: 30px;
+	margin-top:5px;
+}
+header a{
+	padding-left: 10px;
+	color: white;
+	font-size:20px;background-color: #111;
+	text-decoration: none;
+	transition: 0.5s; 
+}
+header a:hover{
+	color: #afafaf;
+	transition: 0.5s; 
+}
+.menu{
+	background-color: #111;
+	padding-top: 10px;
+}
+header div{
+	display: inline-block;
+}
+.content{
+	min-height: 500px;
+	width: 60%;
+	display: flex;
+}
+
+.signupin{
+	min-height: 500px;
+	padding: 15px;
+	border-radius: 10px;
+}
+.signupin input{
+	padding-left: 20px;
+	margin-top:10px;
+	width: 280px;
+	height: 50px;
+	border-radius: 5px;
+}
+.signupin button{
+	margin-top:10px;
+	width: 300px;
+	height: 60px;
+	background-color: #333;
+	color: #ffffff;
+	border-radius: 5px;
+	font-size: 25px;
+	transition: 0.5s;
+}
+.signupin button:hover{
+	background-color: #444;
+	color: #fafafa;
+	transition: 0.5s;
+}
+.signupin form{
+	margin:10px 0px;
+}
+.signupin a{
+	color: black;
+	width:300px;
+	transition: 0.5s;
+}
+.signupin a:hover{
+	padding-left: 10px; 
+	color: #555;
+	transition: 0.5s;
+}
+
+
+footer{
+	padding:10px;
+	height: 60px;
+	width: 100%;
+	color: #aaaaaa;
+}
+footer *{
+	padding-left: 50px;
+}
