@@ -6,25 +6,22 @@
 }
 
 
-
+/*Заголовок */
 header{
 	min-height: 40px;
 	width: 100%;
-	background-color: #111;
-	position: fixed;
-	opacity: .8;
 	color: white;
-	padding-left: 100px;
-	display: flex;
 }
-header img{
-	width: 30px;
-	margin-top:5px;
+.header{
+	width: 100%;
+	text-align: center;
+	background-color: #333;
 }
 header a{
-	padding-left: 10px;
+	display: inline;
+	margin: 0px 5px;
 	color: white;
-	font-size:20px;background-color: #111;
+	font-size:20px; background-color: #333;
 	text-decoration: none;
 	transition: 0.5s; 
 }
@@ -32,20 +29,52 @@ header a:hover{
 	color: #afafaf;
 	transition: 0.5s; 
 }
-.menu{
-	background-color: #111;
-	padding-top: 10px;
-}
-header div{
+header .header div{
+	margin-top: 10px;
+	padding-bottom: 10px;
+	margin-left: 80px;
+	width: 150px;
 	display: inline-block;
+	background-color: #333;
 }
-.content{
-	min-height: 500px;
-	width: 60%;
-	display: flex;
+header form{
+	background-color: #fafafa;
+	border-radius: 10px;
+	width: 150px;
 }
 
+header input{
+	border:0px;
+	padding-left: 10px;
+	height: 20px;
+	width: 110px;
+	border-radius: 10px;
+}
+header button{
+	background-color: #ffbb55;
+	display: inline-block;
+	width: 20px;
+	border-radius: 10px;
+	transition: 0.5s;
+}
+header button:hover{
+	background-color: #fafafa;
+	transition: 0.5s;
+}
+
+/*Сожеожимое */
+article{
+	padding-top: 100px;
+	height: 100%;
+	margin-bottom: 10px;
+}
+.content{
+	text-align: center;
+}
+/*Регистрация и вход */
 .signupin{
+	width: 600px;
+	margin-top: 100px;
 	min-height: 500px;
 	padding: 15px;
 	border-radius: 10px;
@@ -85,14 +114,133 @@ header div{
 	color: #555;
 	transition: 0.5s;
 }
+/* Контент кубики*/
+.box{
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+	margin: 0px 0px -3px 1px;
+}
+.box img{
+	height: 100%;
+	width: 100%;
+	transition: 0.5s;
+}
+.box img:hover{
+	height: 100%;
+	width: 100%;
+	transition: 0.5s;
+	opacity: 0.8;
+}
+/*Публикация*/
+.box_create{
+	max-width: 800px;
+	color: #555;
+	margin: 10px auto 10px;
+}
+.box_create div{
+	margin-top: 10px;
+	display: inline-block;
+	width: 300px;
+	max-height: 300px;
+	background-color: #fafafa;
+	border-color: #333;
+}
+.box_create div input{
+	margin:10px;
+	width: 280px;	
+	height: 250px;
+	border-radius: 10px;
+	margin:10px;
+}
+.box_create div input[type=file]{
+	border:1px solid #aaa;
+	cursor: pointer; 
+}
+.box_create select{
+	margin: 10px;
+	height: 30px;
+	width: 280px;
+	border-radius: 10px;
+}
+.box_create button{
+	border:1px solid #aaa;
+	border-radius: 10px;
+	width: 250px;
+	height: 50px;
+	background-color: #555;
+	margin: 10px auto;
+	color: #fafafa;
+	transition: 0.5s;
+}
+.box_create button:hover{
+	color: #aaa;
+	background-color: #333;
+	transition: 0.5s;
+}
+/* */
+.line{
+	padding-top: 10px;
+	font-size: 20px;
+	margin: 25px 0px;
+	background-color: #333;
+	text-align: center;
+	color:#fafafa;
+	width: 100%;
+	height: 40px;
+}
 
-
+/* */
+.box_work{
+	width: 80%;
+	margin: 0px auto;
+}
+.work_content{
+	display: inline-block;
+	width: 160px;
+	height: 300px;
+	background-color: #fafafa;
+	padding: 10px;
+	border-radius: 10px;
+	margin: 10px;
+}
+.work_content{
+	text-align: center;
+}
+.work_content b,.box{
+	margin: 5px;
+	background-color: #fafafa;
+	color: #333;
+}
+.form{
+	background-color: #fafafa;
+	color: #333;
+}
+.work_content button{
+	background-color: #333;
+	color: #fafafa;
+	border-radius: 5px;
+	margin-top: 5px;
+	width: 100px;
+	height: 30px;
+	border: 1px solid #111;
+	transition: 0.5s;
+}
+.work_content button:hover{
+	background-color: #aaaaaa;
+	color: #333;
+	border-radius: 0px;
+}
+/*Подвал */
 footer{
 	padding:10px;
 	height: 60px;
-	width: 100%;
+	width: 80%;
 	color: #aaaaaa;
+	margin: 20px auto 0px;
 }
-footer *{
-	padding-left: 50px;
+footer div{
+	width: 200px;
+	margin-left: 50px;
+	display: inline-block;
 }
