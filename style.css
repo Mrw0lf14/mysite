@@ -132,6 +132,24 @@ article{
 	transition: 0.5s;
 	opacity: 0.8;
 }
+.box_a{
+	display: inline-block;
+	margin-top: 10px;
+	padding-top: 5px;
+	width: 150px;
+	height: 20px;
+	text-decoration: none;
+	background-color: #fafafa;
+	color: #555;
+	transition: 0.5s;
+	border-radius: 5px;
+}
+.box_a:hover{
+	background-color: #333;
+	color: #fafafa;
+	border-radius: 0px;
+	transition: 0.5s;
+}
 /*Публикация*/
 .box_create{
 	max-width: 800px;
@@ -194,6 +212,7 @@ article{
 .box_work{
 	width: 80%;
 	margin: 0px auto;
+	min-height: 200px;
 }
 .work_content{
 	display: inline-block;

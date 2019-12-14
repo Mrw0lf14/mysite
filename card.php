@@ -49,8 +49,9 @@
 				$owner = $row[5];
 				$author = "<a href =mysite.php?owner=$owner> author</a>";
 				$download ="<a href=download.php?id=$id align='center'>download</a>";
-			 ?>
-			<img src="/uploads/index2.jpeg">
+			 
+				echo "<img src=$pict>"
+			?>
 			<div class="head">
 				<h3> card of model</h3>
 				<hr>

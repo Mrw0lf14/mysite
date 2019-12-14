@@ -27,11 +27,12 @@ function file_force_download($file) {
 
 	$link = mysqli_connect($host, $user, $pswd, $database) or die("Ошибка " . mysqli_error($link));// подключаемся к серверу
 
-	$query = "SELECT * FROM models WHERE id = $id";
+	$query = "SELECT * FROM $table WHERE id = $id";
 	$res = mysqli_query($link ,$query);
 	$row = mysqli_fetch_row($res);
 
-	$file_download = "/var/www/html/uploads/smaltrees.fbx";
+	$file_download = $row[7];
+	echo "$file_download";
 
 	file_force_download($file_download);
 ?>

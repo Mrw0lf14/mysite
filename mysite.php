@@ -1,12 +1,15 @@
 <?php 
+	session_start();
 	$host='localhost'; // имя хоста (уточняется у провайдера)
 	$database='homework'; // имя базы данных, которую вы должны создать
 	$user='root'; // заданное вами имя пользователя, либо определенное провайдером
 	$table='models';//название таблицы
 	$pswd='gavl228_A'; // заданный вами пароль
-	$link = mysqli_connect($host, $user, $pswd, $database) or die("Ошибка " . mysqli_error($link));// подключаемся к серверу
-	$name = $_SESSION['username'];
 
+	$link = mysqli_connect($host, $user, $pswd, $database) or die("Ошибка " . mysqli_error($link));// подключаемся к серверу
+	$name = $_GET['owner'];
+	$query = "SELECT * FROM $table WHERE owner='$name'";
+	$res = mysqli_query($link ,$query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,65 +33,102 @@
 
 	</header>
 	<article>
-		<div class="content">
+		<?php
+
+		if($_SESSION['username']==$name || ($_SESSION['username'] && !$name)){ echo "
+		<div class='content'>
 			<h1>Your page</h1>
 			<br><hr><br>
-			<div class="box_create">
-				<h3>Publich your work</h3>
+			<div class='box_create'>
+				<h3>Publich Your work</h3>
 				<hr>
-				<form enctype="multipart/form-data" action="" method="post">
+				<form enctype='multipart/form-data' action='' method='post'>
 					<div>
 						<b>Give it tag</b>
 							<hr>
-						<select  name="tag">
-							<option value="default"> #tag </option>
-	    					<option value="character"> #character </option>
-	    					<option value="building"> #building </option>
-	    					<option value="plants"> #plants </option>
-	    					<option value="object"> #object </option>
+						<select  name='tag'>
+							<option value='default'> #tag </option>
+	    					<option value='character'> #character </option>
+	    					<option value='building'> #building </option>
+	    					<option value='plants'> #plants </option>
+	    					<option value='object'> #object </option>
   						</select>
 					</div>
 					
 					<div>
 						<b>Give it type</b>
 							<hr>
-						<select  name="type">
-							<option value="default"> #kind_of_work </option>
-	    					<option value="character"> #lowpoly </option>
-	    					<option value="building"> #highpoly </option>
+						<select  name='type'>
+							<option value='default'> #kind_of_work </option>
+	    					<option value='character'> #lowpoly </option>
+	    					<option value='building'> #highpoly </option>
   						</select>
   					</div>
 					<div>
 						<b>Download picture</b>
 						<hr>
-						<input type="file" name="picture">
+						<input type='file' name='picture'>
 					</div>
 					<div>
 						<b>Download model</b>
 						<hr>
-						<input type="file" name="model">
+						<input type='file' name='model'>
 					</div><br>
 					<button>Apply</button>
 				</form>
 			</div>
-		</div>
+		</div>";
+	  } ?>
 
-		<div class="line">Your works</div>
-		<div class="box_work">
-			<div class="work_content">
-				<b>WorkN</b>
-				<hr>
-				<p>
-					<b>#character</b>
-					<b>#lowpoly</b>
-				</p>
-				<div class="box"><img src="images/3.jpg"></div>
-				<form class="form">
-					<button>Download</button>
-					<button>Like</button>
-					<button>Delete</button>
-				</form>
-			</div>
+		
+		<div class='box_work'>
+			
+			<?php 
+				if($_SESSION['username']==$name || ($_SESSION['username'] && !$name)){
+					echo "
+					<br><hr><br>
+					<div class='line'>Your works</div>";
+				} else{
+					echo "
+					<h1>$name's page</h1>
+					<br><hr><br>
+					<div class='line'>His works</div>";
+				}
+			while ($row = mysqli_fetch_row($res)) {//берем данные и переводим их в масси, функция просто переходит по строкам вывода, то есть сначала первая строчка ответа, потом вторая, пока не станет пустой
+					$pict = $row[4];//pict
+					$tag = $row[2];
+					$type = $row[3];
+					$id = $row[0];
+					echo "
+						<div class='work_content'>
+						<b>work N$id</b>
+						<hr>
+						<p>
+						<b>#$type</b>
+						<b>#$tag</b>
+						</p>
+						<div class='box'><img src='$pict'></div>
+						<form class='form'>";
+					if ($_SESSION['username']=="admin" || $_SESSION['username']==$name){
+						echo "	<a class='box_a' href = download.php?id=$id>Download</a>
+								<a class='box_a' >Like</a>
+								<a class='box_a' href = delete.php?id=$id>Delete</a>";
+					} 
+					else if($_SESSION['username']){
+						echo "	<a class='box_a' href = download.php?id=$id>Download</a>
+								<a class='box_a' >Like</a>";
+							}
+					else
+					{
+						echo "	<a class='box_a' href = download.php?id=$id>Download</a>";
+					}
+							
+						echo "</form>
+						</div>";
+				}
+			
+			?>
+			
 		</div>
 	</article>
 	
@@ -100,27 +140,20 @@
 </body>
 </html>
 <?php
-	$host='localhost'; // имя хоста (уточняется у провайдера)
-	$database='homework'; // имя базы данных, которую вы должны создать
-	$user='root'; // заданное вами имя пользователя, либо определенное провайдером
-	$table='models';//название таблицы
-	$pswd='gavl228_A'; // заданный вами пароль
-	$link = mysqli_connect($host, $user, $pswd, $database) or die("Ошибка " . mysqli_error($link));// подключаемся к серверу
 
 	$uploaddir = '/var/www/html/uploads/';// путь, куда сохранить модель, тут он абсолютный для системы, начинается с корневой папки
-
 	$uploadfile = $uploaddir . basename($_FILES['model']['name']);// соединяем путь и имя загруженного файла
 	$dbmodel = '/uploads/'. basename($_FILES['model']['name']);// на сайте абсолютный путь начинается с папки хтмл, то есть она считается корневой
 	$uploadpict = $uploaddir . basename($_FILES['picture']['name']);// соединяем путь и имя загруженного файла
 	$dbpict = '/uploads/'. basename($_FILES['picture']['name']);// на сайте абсолютный путь начинается с папки хтмл, то есть она 
-
+	$name = $_SESSION['username'];
 	$y = $_FILES['model']['name'];
 	if (preg_match("/[a-zA-Z0-9].obj/", $y) || preg_match("/[a-zA-Z0-9].fbx/", $y)){
 	 	if (move_uploaded_file($_FILES['model']['tmp_name'], $uploadfile) && move_uploaded_file($_FILES['picture']['tmp_name'], $uploadpict)) {// если файл переместили
     		echo "Файл корректен и был успешно загружен.\n";
     		$type = $_POST['type'];
 			$tag = $_POST['tag'];
-			$query = "INSERT INTO $table(path,tag,type,pict) VALUES('$dbmodel','$tag','$type','$dbpict')";//сохраняем данные в бд
+			$query = "INSERT INTO $table(path,tag,type,pict,owner,apath) VALUES('$dbmodel','$tag','$type','$dbpict','$name','$uploadfile')";//сохраняем данные в бд
 			$res = mysqli_query($link ,$query);//задаем вопрос
 			echo mysqli_errno($link) . ": " . mysqli_error($link) . "\n";// вывод об ошибке
 			}	

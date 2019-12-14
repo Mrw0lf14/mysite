@@ -1,3 +1,9 @@
+<?php
+	session_start();
+	if (isset($_SESSION['username'])){
+		header("Location: index.php");
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +45,7 @@
 </body>
 </html>
 <?php
-	session_start();
+	
 	$username = $_POST['username'];
 	$pass = $_POST['password'];
 	
@@ -71,7 +77,6 @@
 			}
 			else{
 				$alert = "Wrong password or login";
-				echo "Wrong password or login";
 			}
 		}
 	}
