@@ -8,6 +8,9 @@
 
 	$link = mysqli_connect($host, $user, $pswd, $database) or die("Ошибка " . mysqli_error($link));// подключаемся к серверу
 	$name = $_GET['owner'];
+	if($_SESSION['username']==$name || ($_SESSION['username'] && !$name)){
+		$name = $_SESSION['username'];
+	}
 	$query = "SELECT * FROM $table WHERE owner='$name'";
 	$res = mysqli_query($link ,$query);
 ?>
@@ -23,7 +26,7 @@
 		<div class="header">
 			<div><a href="index.php">New works</a></div>
 			<div>
-				<form action="index.php" method="get">
+				<form action="search.php" method="post">
 					<input placeholder = "Find with tag #" type="text" name="">
 					<button><img src=""></button>
 				</form>
@@ -88,6 +91,7 @@
 					echo "
 					<br><hr><br>
 					<div class='line'>Your works</div>";
+					$name = $_SESSION['username'];
 				} else{
 					echo "
 					<h1>$name's page</h1>
@@ -99,6 +103,9 @@
 					$tag = $row[2];
 					$type = $row[3];
 					$id = $row[0];
+					$ndownloads = $row[7];
+					$pict = $row[4];//pict
+					$idlink ='card.php?id='.$row[0];//id
 					echo "
 						<div class='work_content'>
 						<b>work N$id</b>
@@ -107,11 +114,10 @@
 						<b>#$type</b>
 						<b>#$tag</b>
 						</p>
-						<div class='box'><img src='$pict'></div>
+						<a href='$idlink'><div class='box'><img src='$pict'></div></a>
 						<form class='form'>";
 					if ($_SESSION['username']=="admin" || $_SESSION['username']==$name){
-						echo "	<a class='box_a' href = download.php?id=$id>Download</a>
-								<a class='box_a' >Like</a>
+						echo "	<a class='box_a' title='$ndownloads' href = download.php?id=$id>Download</a>
 								<a class='box_a' href = delete.php?id=$id>Delete</a>";
 					} 
 					else if($_SESSION['username']){

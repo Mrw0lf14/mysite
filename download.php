@@ -30,8 +30,12 @@ function file_force_download($file) {
 	$query = "SELECT * FROM $table WHERE id = $id";
 	$res = mysqli_query($link ,$query);
 	$row = mysqli_fetch_row($res);
+	$downloads = $row[7] + 1;
+	$file_download = $row[6];
 
-	$file_download = $row[7];
+	$query = "UPDATE $table SET downloads = $downloads WHERE id = $id";
+	$res = mysqli_query($link ,$query);
+	$row = mysqli_fetch_row($res);
 	echo "$file_download";
 
 	file_force_download($file_download);

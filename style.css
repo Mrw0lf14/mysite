@@ -142,13 +142,11 @@ article{
 	background-color: #fafafa;
 	color: #555;
 	transition: 0.5s;
-	border-radius: 5px;
 }
 .box_a:hover{
-	background-color: #333;
-	color: #fafafa;
-	border-radius: 0px;
+	background-color: #dadada;
 	transition: 0.5s;
+	border-left: 1px solid #333;
 }
 /*Публикация*/
 .box_create{
@@ -242,7 +240,7 @@ article{
 	margin-top: 5px;
 	width: 100px;
 	height: 30px;
-	border: 1px solid #111;
+	border-left: 1px solid #111;
 	transition: 0.5s;
 }
 .work_content button:hover{
@@ -288,17 +286,80 @@ article{
 	background-color: #fafafa;
 	color: #ababab;
 	transition: 0.5s;
-	border-radius: 5px;
 }
 .card a:hover{
-	border-radius: 0px;
 	color: #555;
 	background-color: #aaaaaa;
 	transition: 0.5s;
 }
 .coments {
-	min-width: 500px;
+	min-width: 250px;
+	margin-top: 20px;
+	max-width: 60%;
+	background-color: #fafafa;
+	color: #333;
+	border-radius: 10px;
 	min-height: 100px;
+	overflow-x:hidden;
+}
+.coments h3{
+	padding-top: 5px;
+	width: 100%;
+	background-color: #333;
+	color: #fafafa;
+	height: 30px;
+}
+.coments .text{
+	width:100%;
+	margin: 10px;
+	text-align: left;
+}
+.coments .likes{
+	width:100%;
+	text-align: right;
+}
+.comment{
+	padding: 10px;
+	min-width: 250px;
+	max-width: 60%;
+	margin-top: 20px;1
+	background-color: #fafafa;
+	color: #333;
+	height: 100px;
+}
+.formcom{
+	width: 60%;
+	display: flex;
+}
+.combutton{
+	background-color: #333;
+	height: 30px;
+	color: #fafafa;
+	transition: 0.5s;
+	flex: 1;
+}
+.like{
+	flex:1;
+	display: inline-block;
+}
+.combutton:hover{
+	background-color: #fafafa;
+	color: #333;
+	transition: 0.5s;
+}
+table, td{
+	border:1px solid #333;
+}
+td{
+	width: 100px;
+	height: 20px;
+	text-align: center;
+}
+.help{
+	max-width: 60%;
+	margin: 0px auto;
+	min-height: 500px;
+	color: #333; 
 }
 /*Подвал */
 footer{

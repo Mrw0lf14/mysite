@@ -1,3 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<header>
+		<div class="header">
+			<div>
+				<form action="search.php" method="post">
+					<input placeholder = "Find with tag #" type="text" name="">
+					<button><img src=""></button>
+				</form>
+			</div>
+			<?php
+				session_start();
+				if(isset($_SESSION['username'])){ 
+					echo '<div><a href="mysite.php">My page</a></div>';
+					echo '<div><a href="exit.php">Exit</a></div>';
+				}
+				else {
+					echo '<div><a href="signin.php">Signin</a></div>';
+					echo '<div><a href="signup.php">Signup</a></div>';
+				};
+			?>
+		</div>
+</header>
+</body>
+</html>
 <?php 
 	$id = $_GET['id'];
 	echo "$id";
@@ -12,8 +43,7 @@
 	$query = "SELECT * FROM $table WHERE id = $id";
 	$res = mysqli_query($link ,$query);
 	$row = mysqli_fetch_row($res);
-	$file = $row[7];
-	echo "$file";
+	$file = $row[6];
 	if (unlink($file)) {
 		echo "success";
 	} else
@@ -22,6 +52,6 @@
 	}
 	$query = "DELETE FROM $table WHERE id = $id";
 	$res = mysqli_query($link ,$query);
-	header("/homework/mysite.php");
-	exit();
+	$query = "DELETE FROM comments WHERE id = $id";
+	$res = mysqli_query($link ,$query);
 ?>

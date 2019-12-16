@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	$host='localhost'; // имя хоста (уточняется у провайдера)
 	$database='homework'; // имя базы данных, которую вы должны создать
 	$user='root'; // заданное вами имя пользователя, либо определенное провайдером
@@ -6,8 +7,14 @@
 	$pswd='gavl228_A'; // заданный вами пароль
 	$link = mysqli_connect($host, $user, $pswd, $database) or die("Ошибка " . mysqli_error($link));// подключаемся к серверу
 
-	$query = "SELECT * FROM models";
+	
+	if($_SESSION['search']){
+		$query = $_SESSION['search'];
+	} else{
+		$query = "SELECT * FROM $table";
+	}
 	$res = mysqli_query($link ,$query);
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,13 +27,13 @@
 	<header>
 		<div class="header">
 			<div>
-				<form>
-					<input placeholder = "Find with tag #" type="text" name="">
+				<form action="search.php" method="post">
+					<input placeholder = "Find with tag #" type="text" name="search">
 					<button><img src=""></button>
 				</form>
 			</div>
 			<?php
-				session_start();
+				
 				if(isset($_SESSION['username'])){ 
 					echo '<div><a href="mysite.php">My page</a></div>';
 					echo '<div><a href="exit.php">Exit</a></div>';

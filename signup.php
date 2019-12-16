@@ -18,9 +18,9 @@
 	$lowercase = preg_match('/[a-z]+/', $pass);
 	$number    = preg_match('/[0-9]+/', $pass);
 	//$special = preg_match('/[%$#@&*^|\/~[]{}._-]+/',$pass);
-	$password_valid = $uppercase && $lowercase && $number && strlen($pass) > 8;
+	$password_valid = $uppercase && $lowercase && $number && strlen($pass) > 8 && strlen($pass) < 16;
 
-	$login_valid = preg_match('/[A-Za-z_]/', $username) && strlen($username) > 6;
+	$login_valid = preg_match('/[A-Za-z_]/', $username) && strlen($username) > 6 && strlen($pass) < 16;
 
 	if(!$password_valid) {
   		$alert = 'This password is too easy. Use 1 number 1 uppercase and 1 lowercase word. The length of pass should be hiher than 8';
@@ -74,7 +74,7 @@
 				<div><input type="password" name="password" placeholder="Password"></div>
 				<div><button type="submit">Apply</button></div>
 			</form>
-			<a href="signin.html">Or Sign in.</a>
+			<a href="signin.php">Or Sign in.</a>
 			<p><?php if($alert){ echo "$alert";} ?></p>
 		</div>
 
